@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../controller/details_controller.dart';
 import 'imag_scren.dart';
 
@@ -71,12 +71,25 @@ class Details extends GetView<DetailsController> {
                               width: logic.popularImages!.profiles![index].width!
                                   .toDouble(),
                               decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: NetworkImage(logic
-                                        .popularImages!.profiles![index].filePath!)),
+                                // image: DecorationImage(
+                                //     fit: BoxFit.fill,
+                                //     image:
+                                //
+                                //
+                                //
+                                //     NetworkImage(logic
+                                //         .popularImages!.profiles![index].filePath!)
+                                //
+                                // ),
                                 borderRadius: BorderRadius.circular(10),
-                              )),
+                              ),child: CachedNetworkImage(height:logic.popularImages!.profiles![index].height!
+                              .toDouble() ,width: logic.popularImages!.profiles![index].width!
+                              .toDouble() ,
+                            imageUrl: logic
+                                .popularImages!.profiles![index].filePath!,
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                          )),
                         ),
                       );
                     },
