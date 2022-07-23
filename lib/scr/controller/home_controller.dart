@@ -5,13 +5,15 @@ import 'package:get/get.dart';
 import 'package:objectbox/objectbox.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../data/cor/stor_singleton.dart';
 import '../../data/model/popular_person_model.dart';
 import '../../data/network/apis/popular_person_api.dart';
 import '../../data/repo/api_repo.dart';
 import '../../data/repo/local_repo.dart';
+import '../../main.dart';
 
 class HomeController extends GetxController{
-late Store _store;
+
   ScrollController scrollController = ScrollController();
   List<Results>populars=[];
 
@@ -28,16 +30,16 @@ getData(){
 
     update();
     value.forEach((element) {
+      objectbox.store.box<Results>().put(element);
 
-      _store.box<Results>().put(element);
     });
+
   });
 }
 
 getData2()async{
- // final store=await openStore();
-//final box=_store.box<Results>();
-  LocalRepo localRepo =LocalRepo(store: _store);
+
+  LocalRepo localRepo =LocalRepo( );
 
   localRepo.getAllPopularPerson(page: page).then((value) {
 
@@ -51,10 +53,10 @@ getData2()async{
   @override
   void onInit() {
     super.onInit();
-    getApplicationDocumentsDirectory().then((value) {
-      _store=Store(getObjectBoxModel(),directory:"${value.path}/objectbox" );
-
-    });
+    // getApplicationDocumentsDirectory().then((value) {
+    //   _store=Store(getObjectBoxModel(),directory:"${value.path}/objectbox" );
+    //
+    // });
 
 
 
@@ -62,12 +64,13 @@ getData2()async{
     scrollController.addListener(_scrollListener);
 
 
+    getData2();
   }
 
 
 @override
   void onClose() {
- _store.close();
+
 
 
   super.onClose();
@@ -78,7 +81,7 @@ getData2()async{
         !scrollController.position.outOfRange) {
       page++;
 
-      getData();
+   getData();
 
     }
     if (scrollController.offset <= scrollController.position.minScrollExtent &&

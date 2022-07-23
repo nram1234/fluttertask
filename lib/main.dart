@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertask/scr/ui/imag_scren.dart';
 import 'package:get/get.dart';
 
+import 'data/cor/stor_singleton.dart';
 import 'scr/bindings/bindings.dart';
 import 'scr/ui/details_scr.dart';
 import 'scr/ui/home.dart';
+late ObjectBox objectbox;
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  objectbox = await ObjectBox.create();
   runApp(const MyApp());
 }
 

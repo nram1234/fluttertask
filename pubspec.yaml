@@ -40,6 +40,9 @@ dependencies:
   get: ^4.6.5
   objectbox: ^1.6.0
   objectbox_flutter_libs: ^1.6.0
+  connectivity_plus: ^2.3.6
+  image_gallery_saver:
+
 
 dev_dependencies:
   flutter_test:

@@ -64,6 +64,7 @@ class Details extends GetView<DetailsController> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(onTap:(){
+                          print("llllllllllllllllllllllllll");
                           Get.find<ImageScrController>().profiles=logic.popularImages?.profiles![index];
                           Get.to(()=>ImageScreen( ));
                         } ,

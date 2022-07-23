@@ -8,7 +8,7 @@ import '../widget/popular_list_item.dart';
 class Home extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    controller.getData2();
+
     return Scaffold(
       appBar: AppBar(),
       body: GetBuilder<HomeController>(builder: (logic) {
