@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../controller/details_controller.dart';
+import '../controller/image_scr_controller.dart';
 import 'imag_scren.dart';
 
 class Details extends GetView<DetailsController> {
@@ -63,7 +64,8 @@ class Details extends GetView<DetailsController> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(onTap:(){
-                          Get.to(()=>ImageScreen(profiles: logic.popularImages?.profiles![index],));
+                          Get.find<ImageScrController>().profiles=logic.popularImages?.profiles![index];
+                          Get.to(()=>ImageScreen( ));
                         } ,
                           child: Container(
                               height: logic.popularImages!.profiles![index].height!

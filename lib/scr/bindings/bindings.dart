@@ -9,6 +9,7 @@ class AllBindings extends Bindings {
   void dependencies() async {
     Get.put<HomeController>(HomeController());
     Get.lazyPut(() => DetailsController());
+    Get.lazyPut(() => DetailsController());
   }
 }
 

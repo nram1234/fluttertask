@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../data/model/popular_images.dart';
+import '../controller/image_scr_controller.dart';
 
-class ImageScreen extends StatelessWidget {
-  Profiles? profiles;
+class ImageScreen extends GetView<ImageScrController> {
 
-  ImageScreen({  this.profiles});
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +15,11 @@ class ImageScreen extends StatelessWidget {
           child: Stack(
       children: [
           Container(
-            height: profiles!.height!.toDouble(),
-            width: profiles!.width!.toDouble(),    decoration: BoxDecoration(
+            height:controller. profiles!.height!.toDouble(),
+            width:controller. profiles!.width!.toDouble(),    decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fill,
-                image: NetworkImage(profiles!.filePath!)),
+                image: NetworkImage(controller.profiles!.filePath!)),
             borderRadius: BorderRadius.circular(10),
           )
           )

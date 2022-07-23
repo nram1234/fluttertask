@@ -8,6 +8,7 @@ import '../widget/popular_list_item.dart';
 class Home extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
+    controller.getData2();
     return Scaffold(
       appBar: AppBar(),
       body: GetBuilder<HomeController>(builder: (logic) {
@@ -20,7 +21,7 @@ class Home extends GetView<HomeController> {
                 itemBuilder: (context, pos) {
                   return InkWell(onTap: (){
                     Get.find<DetailsController>().results=logic.populars[pos];
-                    Get.find<DetailsController>().getdata(id: logic.populars[pos].id!);
+                    Get.find<DetailsController>().getdata(id: logic.populars[pos].idResults!);
                     Get.toNamed("Details");
                   },
                     child: PopularListItem(

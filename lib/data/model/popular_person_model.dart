@@ -35,9 +35,10 @@ class PopularPersonModel extends AbstractJsonResource{
 }
 @Entity()
 class Results {
+  int? id;
   bool? adult;
   int? gender;
-  int? id;
+  int? idResults;
   List<KnownFor>? knownFor;
   String? knownForDepartment;
   String? name;
@@ -47,17 +48,17 @@ class Results {
   Results(
       {this.adult,
         this.gender,
-        this.id,
+        this.idResults,
         this.knownFor,
         this.knownForDepartment,
         this.name,
         this.popularity,
-        this.profilePath});
+        this.profilePath,this.id=0});
 
   Results.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
     gender = json['gender'];
-    id = json['id'];
+    idResults = json['id'];
     if (json['known_for'] != null) {
       knownFor = <KnownFor>[];
       json['known_for'].forEach((v) {
@@ -74,7 +75,7 @@ class Results {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['adult'] = this.adult;
     data['gender'] = this.gender;
-    data['id'] = this.id;
+    data['id'] = this.idResults;
     if (this.knownFor != null) {
       data['known_for'] = this.knownFor!.map((v) => v.toJson()).toList();
     }
@@ -87,10 +88,11 @@ class Results {
 }
 @Entity()
 class KnownFor {
+ int?id;
   bool? adult;
   String? backdropPath;
   List? genreIds;
-  int? id;
+  int? idPopular;
   String? mediaType;
   String? originalLanguage;
   String? originalTitle;
@@ -110,7 +112,7 @@ class KnownFor {
       {this.adult,
         this.backdropPath,
         this.genreIds,
-        this.id,
+        this.idPopular,
         this.mediaType,
         this.originalLanguage,
         this.originalTitle,
@@ -124,13 +126,14 @@ class KnownFor {
         this.firstAirDate,
         this.name,
         this.originCountry,
-        this.originalName});
+        this.originalName,this.id=0});
 
   KnownFor.fromJson(Map<String, dynamic> json) {
+
     adult = json['adult'];
     backdropPath =  "http://image.tmdb.org/t/p/w500${json['backdrop_path']}";
     genreIds = json['genre_ids'];
-    id = json['id'];
+    idPopular = json['id'];
     mediaType = json['media_type'];
     originalLanguage = json['original_language'];
     originalTitle = json['original_title'];
@@ -152,7 +155,7 @@ class KnownFor {
     data['adult'] = this.adult;
     data['backdrop_path'] = this.backdropPath;
     data['genre_ids'] = this.genreIds;
-    data['id'] = this.id;
+    data['id'] = this.idPopular;
     data['media_type'] = this.mediaType;
     data['original_language'] = this.originalLanguage;
     data['original_title'] = this.originalTitle;

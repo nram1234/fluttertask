@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             page: () => Details(),
           ),  GetPage(
             name: "/Image",
-            page: () => ImageScreen(),
+            page: () => ImageScreen( ),
           )
         ]);
 
