@@ -1,4 +1,5 @@
 import 'package:fluttertask/data/model/cor/abstract_json_resource.dart';
+import 'package:objectbox/objectbox.dart';
 
 class PopularPersonModel extends AbstractJsonResource{
   int? page;
@@ -32,7 +33,7 @@ class PopularPersonModel extends AbstractJsonResource{
     return data;
   }
 }
-
+@Entity()
 class Results {
   bool? adult;
   int? gender;
@@ -84,7 +85,7 @@ class Results {
     return data;
   }
 }
-
+@Entity()
 class KnownFor {
   bool? adult;
   String? backdropPath;
