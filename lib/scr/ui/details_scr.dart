@@ -18,7 +18,7 @@ class Details extends GetView<DetailsController> {
             mainAxisAlignment: MainAxisAlignment.start,children: [
               IntrinsicHeight(
                 child: Row(
-                  children: [Expanded(child: Container(height: 100,
+                  children: [Expanded(child: Container(height: 200,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,

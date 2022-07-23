@@ -11,6 +11,7 @@ import '../../data/network/apis/popular_person_api.dart';
 import '../../data/repo/api_repo.dart';
 import '../../data/repo/local_repo.dart';
 import '../../main.dart';
+import '../../utilitie/utilitie.dart';
 
 class HomeController extends GetxController{
 
@@ -19,6 +20,7 @@ class HomeController extends GetxController{
 
   int page = 1;
   APIRepo _apiRepo=APIRepo();
+  bool? isConnect ;
 
 
 getData(){
@@ -29,10 +31,10 @@ getData(){
     populars.addAll(value);
 
     update();
-    value.forEach((element) {
+    for (var element in value) {
       objectbox.store.box<Results>().put(element);
 
-    });
+    }
 
   });
 }
@@ -49,39 +51,44 @@ getData2()async{
 
   });
 }
+getdatatolist()async{
+
+
+
+  if( isConnect??false ){
+    getData();
+  }else{
+    getData2();
+  }
+}
+
+  getcon()async{
+    isConnect=await getconction();
+
+  }
 
   @override
   void onInit() {
     super.onInit();
-    // getApplicationDocumentsDirectory().then((value) {
-    //   _store=Store(getObjectBoxModel(),directory:"${value.path}/objectbox" );
-    //
-    // });
-
-
+    getcon();
 
 
     scrollController.addListener(_scrollListener);
 
-
-    getData2();
+    getdatatolist();
   }
 
 
-@override
-  void onClose() {
 
-
-
-  super.onClose();
-  }
 
   _scrollListener() {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
       page++;
+if(   isConnect??false){
+  getData();
+}
 
-   getData();
 
     }
     if (scrollController.offset <= scrollController.position.minScrollExtent &&

@@ -20,9 +20,12 @@ class Home extends GetView<HomeController> {
                 itemCount: logic.populars.length,
                 itemBuilder: (context, pos) {
                   return InkWell(onTap: (){
-                    Get.find<DetailsController>().results=logic.populars[pos];
-                    Get.find<DetailsController>().getdata(id: logic.populars[pos].idResults!);
-                    Get.toNamed("Details");
+                    if(controller.isConnect??false){
+                      Get.find<DetailsController>().results=logic.populars[pos];
+                      Get.find<DetailsController>().getdata(id: logic.populars[pos].idResults!);
+                      Get.toNamed("Details");
+                    }
+
                   },
                     child: PopularListItem(
                       results: logic.populars[pos],
